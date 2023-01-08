@@ -46,7 +46,7 @@ class GenerateBasicAccessToken extends Command
         $hours = 2;
         $accessToken = BasicAccessToken::create([
             'token' => Str::random(45),
-            'expires_at' => Carbon::now()->addSeconds($hours),
+            'expires_at' => Carbon::now()->addHours($hours),
         ]);
         $this->info('Access Token successfully created!');
         $this->warn($accessToken->token);

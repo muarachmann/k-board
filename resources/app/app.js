@@ -11,7 +11,7 @@ import store from "./store";
 window.Vue = Vue;
 Vue.router = router
 
-Vue.use(VueModal)
+Vue.use(VueModal, { dialog: true })
 Vue.use(VueRouter)
 
 const app = new Vue({

@@ -73,12 +73,17 @@ class KanbanColumnController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(int $id): Response
     {
-        //
+        $column = KanbanColumn::withTrashed()->find($id);
+        if (!$column) {
+            return response(['message' => 'No such column found.'], 400);
+        }
+        $column->delete();
+        return response(['message' => 'Successfully deleted column']);
     }
 
     /**
@@ -160,7 +165,7 @@ class KanbanColumnController extends Controller
             ->setDbName(env('DB_DATABASE'))
             ->setUserName(env('DB_USERNAME'))
             ->setPassword(env('DB_PASSWORD'))
-            ->dumpToFile('kanban_board.sql');
+            ->dumpToFile(Storage::path('public/kanban_board.sql'));
 
         $filePath = Storage::path('public/kanban_board.sql');
         $fileName = 'kanban_board.sql';

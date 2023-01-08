@@ -29,7 +29,7 @@
                 <div v-for="column in kanban_columns" class="flex flex-col flex-shrink-0 w-72">
                     <div class="flex items-center flex-shrink-0 h-10 px-2">
                         <span class="flex items-center h-6 px-3 text-sm font-bold text-white bg-gray-700 rounded">{{ column.title }}</span>
-                        <button class="flex items-center justify-center w-6 h-6 ml-auto text-red-700 rounded hover:bg-red-500 hover:text-red-100">
+                        <button @click="deleteColumn(column.id, column.title)" class="flex items-center justify-center w-6 h-6 ml-auto text-red-700 rounded hover:bg-red-500 hover:text-red-100">
                             <icon name="trash" class="w-5 h-5"/>
                         </button>
                     </div>
@@ -59,6 +59,7 @@
             <icon v-if="isDownloading" name="circle-loader" class="w-5 h-5 mx-2 animate-spin"/>
             <icon v-else name="download" class="w-5 h-5 mx-2"/>
         </button>
+        <v-dialog />
     </div>
 </template>
 
@@ -129,6 +130,36 @@ export default {
                     this.kanban_columns[index].cards.push(card);
                 }
             }
+        },
+        deleteColumn(column_id, column_title) {
+            this.$modal.show('dialog', {
+                title: 'Delete Column',
+                text: `Are you sure you want to delete column <strong>${column_title}</strong> ? Doing so will delete all cards found in it`,
+                buttons: [
+                    {
+                        title: 'Cancel',
+                        handler: () => {
+                            this.$modal.hide('dialog')
+                        }
+                    },
+                    {
+                        title: 'Yes, Delete',
+                        handler: () => {
+                            axios.delete('/api/kanban-columns/' + column_id).then(({ data }) => {
+                                this.$modal.hide('dialog')
+                                let index = this.kanban_columns.findIndex(col => col.id === column_id);
+                                if (index > -1) {
+                                    this.kanban_columns.splice(index, 1)
+                                }
+                                alert(data.message)
+                            }).catch(({ response }) => {
+                                this.$modal.hide('dialog')
+                                alert(`Oops error deleting ${column_title}`)
+                            })
+                        }
+                    },
+                ]
+            })
         },
         download() {
             this.isDownloading = true
