@@ -41,9 +41,8 @@ Make sure your server meets the following requirements.
 
 Make sure you have the following php extensions enabled
 
-bz2, curl, date, dom, exif, gd, gettext, grpc,
-imagick, intl, json, libxml, mbstring, fileinfo, redis, mysqli, mysqlnd, openssl, pcnlt, PDO,
-pdo_mysql, posix, protobuf, soap, sqlite3, xml, xmlreader, xmlrpc, xmlwriter
+bz2, curl, date, dom, exif, gettext, intl, json, libxml, mbstring, fileinfo, mysqli, openss, PDO,
+pdo_mysql, posix, soap, sqlite3, xml, xmlreader, xmlwriter
 xsl, zip, zlib
 
 
@@ -53,7 +52,7 @@ This application is built using (php, Laravel 9, Vue2, tailwindcss)
 Please  be sure to google about this stack in order to better understand.
 Also, as side note, we use other tools for smooth integration such as
 
-`spatiet-db-dump, vue-js-moddal, vue-draggable`. The links are available in the [References](#references) section
+`spatie-db-dumper, vue-js-modal, vue-draggable`. The links are available in the [References](#references) section
 below
 
 
