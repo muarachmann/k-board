@@ -1,0 +1,18 @@
+/**
+ * app.scss
+ * BeMo Kanban Board (developer app) stylesheet using Tailwind css combined with Sass
+ * @author Mua N. Laurent <muarachmann@gmail.com>
+ * @version 1.0.0
+ * @since January 2023
+ */
+
+
+// 3rd Parties
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+// Components
+@import "global";
+@import "input";
+@import "button";
+@import "tailwind";
+@import "modal";
