@@ -171,6 +171,6 @@ class KanbanColumnController extends Controller
         $fileName = 'kanban_board.sql';
         $mimeType = Storage::mimeType($filePath);
         $headers = [['Content-Type' => $mimeType]];
-        return response()->download($filePath, $fileName, $headers);
+        return Storage::download($filePath, $fileName, $headers);
     }
 }
