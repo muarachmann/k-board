@@ -167,13 +167,14 @@ export default {
                 url: '/api/kanban-board/db/export',
                 method: 'GET',
                 responseType: 'blob',
-            }).then((res) => {
-                let file = window.URL.createObjectURL(new Blob([res.data]));
-                let docUrl = document.createElement('x');
-                docUrl.href = file;
-                docUrl.setAttribute('download', 'kanban_board.sql');
-                document.body.appendChild(docUrl);
-                docUrl.click();
+            }).then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement("a");
+                link.href = url;
+                link.setAttribute("download", "kanban_board.sql");
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
                 this.isDownloading = false
             }).catch(({ response }) => {
                 this.isDownloading = false
