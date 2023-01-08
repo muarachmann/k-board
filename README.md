@@ -65,7 +65,7 @@ It packs in lots of demanding features that allows this project to scale in no t
 - [x] Delete Columns
 - [x] Access cards via access token
 - [ ] Preserve Board state (remember where board was lastly saved)
-- [ ] Add card to column when dragged
+- [ ] Save card to column when dragged & dropped
 
 ## Installation
 

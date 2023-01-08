@@ -29,7 +29,15 @@ class KanbanColumnController extends Controller
             return [
                 'id' => $column->id,
                 'title' => $column->title,
-                'cards' => $column->kanban_cards,
+                'cards' => $column->kanban_cards->transform(function($card) {
+                    return [
+                        'id' => $card->id,
+                        'column_id' => $card->column_id,
+                        'title' => $card->title,
+                        'description' => $card->description,
+                        'priority' => $card->priority
+                    ];
+                }),
             ];
         });
         return response($kanbanColumns);

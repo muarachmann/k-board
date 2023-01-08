@@ -9,18 +9,24 @@
 
 <script>
 import Header from "../shared/Header.vue";
-import { mapGetters } from "vuex";
 
 export default {
     name: "BeMoApp",
     components: {
         Header
     },
-    computed: {
-        ...mapGetters({theme: "getTheme"}),
-    },
     beforeMount() {
-        this.$store.dispatch("initTheme")
+        const html = document.querySelector("html");
+        switch (localStorage.theme) {
+            case 'light':
+                localStorage.theme = "light"
+                html.classList.remove("dark")
+                break;
+            default:
+                localStorage.theme = "dark"
+                html.classList.add("dark")
+                break;
+        }
     },
     watch: {
         theme(newTheme) {

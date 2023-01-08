@@ -1,7 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import theme from "./theme";
-import kanban_board from "./kanban_board";
 import router from '../router';
 
 Vue.use(Vuex);
@@ -57,8 +55,4 @@ export default new Vuex.Store({
             router.push({ name: 'home' })
         }
     },
-    modules: {
-        main: theme,
-        kanban_board: kanban_board,
-    }
 });

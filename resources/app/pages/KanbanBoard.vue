@@ -34,7 +34,7 @@
                         </button>
                     </div>
                     <div class="flex flex-col pb-2 overflow-auto overflow-scroll-container">
-                        <draggable :list="column.cards" :animation="200" ghost-class="ghost-card" group="tasks">
+                        <draggable :list="column.cards" :animation="200" @start="cardStart" @end="cardDropped" group="cards">
                             <kanban-card
                                 v-for="(card) in column.cards"
                                 :key="card.id"
@@ -160,6 +160,12 @@ export default {
                     },
                 ]
             })
+        },
+        cardStart(col) {
+            console.log(col)
+        },
+        cardDropped(col) {
+            console.log(col)
         },
         download() {
             this.isDownloading = true
